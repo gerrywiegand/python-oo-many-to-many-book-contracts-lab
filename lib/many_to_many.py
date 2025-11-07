@@ -1,10 +1,40 @@
 class Author:
-    pass
+    all = []
+
+    def __init__(self, name):
+        if isinstance(name, str):
+            self.name = name
+        else:
+            raise TypeError("Name must be a string")
+        Author.all.append(self)
 
 
 class Book:
-    pass
+    all = []
+
+    def __init__(self, title):
+        if isinstance(title, str):
+            self.title = title
+        else:
+            raise TypeError("Title must be a string")
+        Book.all.append(self)
 
 
 class Contract:
-    pass
+    all = []
+
+    def __init__(self, author, book, date, royalties):
+        if not isinstance(author, Author):
+            raise TypeError("author must be an instance of Author")
+        if not isinstance(book, Book):
+            raise TypeError("book must be an instance of Book")
+        if not isinstance(date, str):
+            raise TypeError("date must be a string")
+        if not isinstance(royalties, (int, float)):
+            raise TypeError("royalties must be a number")
+
+        self.author = author
+        self.book = book
+        self.date = date
+        self.royalties = royalties
+        Contract.all.append(self)
