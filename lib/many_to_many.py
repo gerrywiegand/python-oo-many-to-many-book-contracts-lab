@@ -19,6 +19,9 @@ class Book:
             raise TypeError("Title must be a string")
         Book.all.append(self)
 
+    def contracts(self):
+        return [contract for contract in Contract.all if contract.book == self]
+
 
 class Contract:
     all = []
