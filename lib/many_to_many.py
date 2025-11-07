@@ -8,6 +8,9 @@ class Author:
             raise TypeError("Name must be a string")
         Author.all.append(self)
 
+    def contracts(self):
+        return [contract for contract in Contract.all if contract.author == self]
+
 
 class Book:
     all = []
