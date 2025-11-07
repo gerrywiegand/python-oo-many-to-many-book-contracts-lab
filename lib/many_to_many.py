@@ -14,6 +14,12 @@ class Author:
     def books(self):
         return [contract.book for contract in self.contracts()]
 
+    def sign_contract(self, book, date, royalties):
+        return Contract(self, book, date, royalties)
+
+    def total_royalties(self):
+        return sum(contract.royalties for contract in self.contracts())
+
 
 class Book:
     all = []
@@ -90,3 +96,7 @@ class Contract:
         if not isinstance(value, (int, float)):
             raise TypeError("royalties must be a number")
         self._royalties = value
+
+    @classmethod
+    def contracts_by_date(cls, date):
+        return [contract for contract in cls.all if contract.date == date]
